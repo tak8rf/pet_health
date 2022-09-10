@@ -3,12 +3,20 @@
 <hr />
 <div class = "col-md-3">
   <table>
+    <thead>
+      <tr>
+        <th>愛犬</th>
+        <th>年齢</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
     <tbody>
-      <% @pets.each do |pet| %>
         <tr>
-          <td><%= link_to pet.name, pet %></td>
+          <% @pets.each do |pet| %>
+            <td><%= link_to pet.name, pet %></td>
+          <% end %>
+          <td><%= @age %>歳</td>
         </tr>
-      <% end %>
     </tbody>
   </table>
 </div>

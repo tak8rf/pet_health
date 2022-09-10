@@ -12,14 +12,14 @@ class Task < ApplicationRecord
     today_tasks
   end
 
-  # def self.remind
-  #   tasks = Task.where(mailer:false)
-  #   tasks.each do |task|
-  #     if task.start_time < Time.now
-  #       TodoMailer.send_at_the_time(task.user,task).deliver
-  #       task.mailer = true
-  #       task.save
-  #     end
-  #   end
-  # end
+  def self.remind
+    tasks = Task.where(mailer:false)
+    tasks.each do |task|
+      if task.start_time < Time.now
+        TodoMailer.send_at_the_time(task.user,task).deliver
+        task.mailer = true
+        task.save
+      end
+    end
+  end
 end

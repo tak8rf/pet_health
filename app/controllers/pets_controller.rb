@@ -4,10 +4,16 @@ class PetsController < ApplicationController
   # GET /pets or /pets.json
   def index
     @pets = Pet.all
+    date_format = "%Y%m%d"
+    @pets.each do |pet|
+    @age = (Date.today.strftime(date_format).to_i - pet.birthday.strftime(date_format).to_i)/10000
+    end
   end
 
   # GET /pets/1 or /pets/1.json
   def show
+    date_format = "%Y%m%d"
+    @age = (Date.today.strftime(date_format).to_i - @pet.birthday.strftime(date_format).to_i)/10000
   end
 
   # GET /pets/new
@@ -65,6 +71,6 @@ class PetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_params
-      params.require(:pet).permit(:name, :image, :content, :family_id)
+      params.require(:pet).permit(:name, :content, :family_id, :birthday)
     end
 end
