@@ -61,3 +61,8 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'whenever', require: false
+
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+gem 'kaminari'

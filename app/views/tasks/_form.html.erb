@@ -10,20 +10,29 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= form.label :ペット名 %><br>
+    <%= form.collection_select(:pet_id,@pets,:id,:name)%>
+  </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :実行人 %><br>
+    <%= form.collection_select(:user_id,@users,:id,:name)%>
+  </div>
+
+  <div class="field">
+    <%= form.label :実行時間 %><br>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :タスク名 %><br>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :備考欄 %><br>
     <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
   </div>
 
   <div class="actions">

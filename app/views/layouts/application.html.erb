@@ -12,7 +12,10 @@
 
   <body>
     <% if user_signed_in? %>
-    <%= link_to "ユーザー", user_path(current_user)%>
+      <%= link_to "ユーザー", user_path(current_user)%>
+      <%= link_to "ペット", pets_path%>
+      <%= link_to "タスク", tasks_path%>
+      <%= link_to "体調管理", healths_path%>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to 'ログイン', new_user_session_path %>

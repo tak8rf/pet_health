@@ -1,30 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Content</th>
-      <th>Family</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= pet.name %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<h1>愛犬一覧</h1>
+<%= link_to '愛犬を登録', new_pet_path %>
+<hr />
+<div class = "col-md-3">
+  <table>
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr>
+          <td><%= link_to pet.name, pet %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
-
-<%= link_to 'New Pet', new_pet_path %>

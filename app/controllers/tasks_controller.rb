@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy done]
+  before_action :set_pets, only: %i[ new create edit update ]
+  before_action :set_users, only: %i[ new create edit update ]
 
   # GET /tasks or /tasks.json
   def index
@@ -59,6 +61,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def done
+    if @task.update(is_done: true )
+      DoneMailer.send_when_done(@task).deliver
+      redirect_to tasks_path
+    else 
+      render 'index'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -67,6 +78,14 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :start_time)
+      params.require(:task).permit(:title, :content, :start_time, :pet_id, :user_id)
+    end
+
+    def set_pets
+      @pets = current_user.families.first.pets
+    end
+
+    def set_users
+      @users = current_user.families.first.users
     end
 end

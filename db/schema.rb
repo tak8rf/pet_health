@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_115200) do
+ActiveRecord::Schema.define(version: 2022_09_10_063712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,20 @@ ActiveRecord::Schema.define(version: 2022_09_08_115200) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+  create_table "healths", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "pet_id", null: false
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_time", null: false
+    t.index ["pet_id"], name: "index_healths_on_pet_id"
+    t.index ["user_id"], name: "index_healths_on_user_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string "name"
-    t.text "image"
     t.text "content"
     t.bigint "family_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -46,6 +57,12 @@ ActiveRecord::Schema.define(version: 2022_09_08_115200) do
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "pet_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "is_done", default: false, null: false
+    t.boolean "mailer", default: false, null: false
+    t.index ["pet_id"], name: "index_tasks_on_pet_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,5 +91,9 @@ ActiveRecord::Schema.define(version: 2022_09_08_115200) do
 
   add_foreign_key "groups", "families"
   add_foreign_key "groups", "users"
+  add_foreign_key "healths", "pets"
+  add_foreign_key "healths", "users"
   add_foreign_key "pets", "families"
+  add_foreign_key "tasks", "pets"
+  add_foreign_key "tasks", "users"
 end

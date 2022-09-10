@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Healths</h1>
+  <%= link_to 'New Health', new_health_path %>
+  <hr />
+  <div class="search-form">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  <hr />
+  <div class="row">
+    <div class ="col-md-4">
+      <table>
+        <thead>
+          <tr>
+            <th>状態</th>
+            <th>日付</th>
+            <th>愛犬</th>
+            <th>担当</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @healths.each do |health| %>
+            <tr>
+              <td><%= link_to health.title , health %></td>
+              <td><%= health.start_time.strftime("%Y-%m-%d") %></td>
+              <td><%= health.pet.name %></td>
+              <td><%= health.user.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <%= paginate @healths %>
+    </div>
+    <hr />
+    <br><br>
+    <%= month_calendar events: @healths do |date, healths| %>
+      <%= date %>
+      <div>
+        <% healths.each do |health| %>
+          <%= link_to health.title, health %><br>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>

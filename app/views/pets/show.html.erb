@@ -6,14 +6,9 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= image_tag @feed.image.url %>
-</p>
-
-<p>
   <strong>Content:</strong>
   <%= @pet.content %>
 </p>
-
+<%= link_to 'Back', pets_path %>|
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<%= link_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -20,12 +20,23 @@ class FamiliesController < ApplicationController
   end
 
   # POST /families or /families.json
+  # def create
+  #   current_user.families.build(family_params)
+  #   if current_user.save
+  #     redirect_to user_path(current_user), notice: "作成しました"
+  #   else
+  #     render 'new'
+  #   end
+  # end
+
   def create
-    current_user.families.build(family_params)
-    if current_user.save
+    family = Family.new(family_params)
+    family.save
+    group = Group.new
+    group.user_id = current_user.id
+    group.family_id = Family.last.id
+    if group.save
       redirect_to user_path(current_user), notice: "作成しました"
-    else
-      render 'new'
     end
   end
 

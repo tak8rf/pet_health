@@ -1,0 +1,41 @@
+<div class="col-3">
+  <%= form_with(model: health) do |form| %>
+    <% if health.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(health.errors.count, "error") %> prohibited this health from being saved:</h2>
+
+        <ul>
+          <% health.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :ペット名 %><br>
+      <%= form.collection_select(:pet_id,@pets,:id,:name)%>
+    </div>
+
+    <div class="time">
+      <div class="form-tag">日付</div>
+      <%= form.datetime_select :start_time %>
+    </div>
+
+    <div class="field">
+      <%= form.label :体調 %><br>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :詳細 %><br>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :healths
   resources :pets
   resources :families
   get 'users/show'
@@ -9,5 +10,8 @@ Rails.application.routes.draw do
     invitations: 'users/invitations'
   }
   resources :users, only: :show
+  
+  post '/tasks/:id/done' => 'tasks#done',   as: 'done'
+  get 'search' => 'healths#search'
 
 end

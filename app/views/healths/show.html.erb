@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>担当:</strong><br>
+  <%= @health.user.name %>
+</p>
+
+<p>
+  <strong>愛犬:</strong><br>
+  <%= @health.pet.name%>
+</p>
+
+<p>
+  <strong>体調:</strong><br>
+  <%= @health.title %>
+</p>
+
+<p>
+  <strong>詳細:</strong><br>
+  <%= @health.content %>
+</p>
+<%= link_to 'Destroy', @health, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to 'Edit', edit_health_path(@health) %> |
+<%= link_to 'Back', healths_path %>

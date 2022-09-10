@@ -12,19 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :名前 %><br>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
+    <%= form.label :備考欄 %><br>
     <%= form.text_area :content %>
   </div>
+
+  <%= form.hidden_field :family_id, :value => current_user.families.first.id %>
 
   <div class="actions">
     <%= form.submit %>

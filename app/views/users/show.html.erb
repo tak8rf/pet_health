@@ -1,19 +1,21 @@
-<h2>Users</h2>
+<h2>ユーザー情報</h2>
 <hr />
-<p>
-    <strong>ユーザー名</strong>
-    <%= @user.name %>
-</p>
-<p>
-    <strong>e-mail</strong>
-    <%= @user.email %>
-</p>
-<% if current_user.families.first.present? %>
-<p>
-<strong>家族名</strong>
-<%= current_user.families.first.name %>
-</p>
-<% else %>
-<%= link_to "ファミリーに所属する", new_family_path%><br>
-<% end %>
+    <div class="col-md-3">
+    <p>
+        <strong>ユーザー名</strong>
+        <%= @user.name %>
+    </p>
+    <p>
+        <strong>e-mail</strong>
+        <%= @user.email %>
+    </p>
+    <% if current_user.families.first.present? %>
+    <p>
+    <strong>家族名</strong>
+    <%= current_user.families.first.name %>
+    </p>
+    <% else %>
+    <%= link_to "ファミリーに所属する", new_family_path%><br>
+    <% end %>
+</div>
 <%= link_to "ユーザーを招待", new_user_invitation_path%>

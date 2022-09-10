@@ -5,8 +5,9 @@ class Users::InvitationsController < Devise::InvitationsController
   
     def create
       super
+      # User.find_by(email: params[:user][:email]).families.build(params[:user][:family_id])
       @group = Group.new
-      @group.user_id = User.last.id
+      @group.user_id = User.find_by(email: params[:user][:email]).id
       @group.family_id = params[:user][:family_id]
       @group.save
     end

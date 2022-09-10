@@ -1,5 +1,7 @@
-<h1>New Pet</h1>
+<h1>愛犬を登録</h1>
+<hr />
+<div class="col-md-3">
+    <%= render 'form', pet: @pet %>
 
-<%= render 'form', pet: @pet %>
-
-<%= link_to 'Back', pets_path %>
+    <%= link_to 'Back', pets_path %>
+</div>
