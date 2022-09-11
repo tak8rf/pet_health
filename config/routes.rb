@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :pets
   resources :families
   get 'users/show'
-  root to: "tasks#index"
+  root to: "families#new"
   resources :tasks
 
   devise_for :users, controllers: {

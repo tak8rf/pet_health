@@ -25,12 +25,14 @@
 
         <tbody>
           <% @healths.each do |health| %>
-            <tr>
-              <td><%= link_to health.title , health %></td>
-              <td><%= health.start_time.strftime("%Y-%m-%d") %></td>
-              <td><%= health.pet.name %></td>
-              <td><%= health.user.name %></td>
-            </tr>
+            <% if health.pet.family.id == current_user.families.first.id %>
+              <tr>
+                <td><%= link_to health.title , health %></td>
+                <td><%= health.start_time.strftime("%Y-%m-%d") %></td>
+                <td><%= health.pet.name %></td>
+                <td><%= health.user.name %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
@@ -43,7 +45,9 @@
       <%= date %>
       <div>
         <% healths.each do |health| %>
-          <%= link_to health.title, health %><br>
+          <% if health.pet.family.id == current_user.families.first.id %>
+            <%= link_to health.title, health %><br>
+          <% end %>
         <% end %>
       </div>
     <% end %>

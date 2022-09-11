@@ -17,13 +17,15 @@
           </thead>
           <tbody>
             <% @tasks.filter{|task| !task.is_done? }.each do |task| %>
-              <tr>
-                <td><%= link_to task.title , task %></td>
-                <td><%= task.start_time.strftime("%H:%M") %></td>
-                <td><%= task.user.name%></td>
-                <td><%= task.pet.name%></td>
-                <td><%= link_to 'Done', done_path(task.id), method: :post %></td>
-              </tr>
+              <% if task.pet.family.id == current_user.families.first.id %>
+                <tr>
+                  <td><%= link_to task.title , task %></td>
+                  <td><%= task.start_time.strftime("%H:%M") %></td>
+                  <td><%= task.user.name%></td>
+                  <td><%= task.pet.name%></td>
+                  <td><%= link_to 'Done', done_path(task.id), method: :post %></td>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
@@ -43,11 +45,13 @@
         </thead>
         <tbody>
           <% @tasks.filter{|task| task.is_done? }.each do |task| %>
-            <tr>
-              <td><%= link_to task.title , task %></td>
-              <td><%= task.user.name%></td>
-              <td><%= task.pet.name %></td>
-            </tr>
+            <% if task.pet.family.id == current_user.families.first.id %>
+              <tr>
+                <td><%= link_to task.title , task %></td>
+                <td><%= task.user.name%></td>
+                <td><%= task.pet.name %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
@@ -58,7 +62,9 @@
     <%= date %>
     <div>
       <% tasks.each do |task| %>
-        <%= link_to task.title, task %>
+        <% if task.pet.family.id == current_user.families.first.id %>
+          <%= link_to task.title, task %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
