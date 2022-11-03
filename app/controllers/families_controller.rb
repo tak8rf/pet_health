@@ -4,6 +4,7 @@ class FamiliesController < ApplicationController
   # GET /families or /families.json
   def index
     @families = Family.all
+    @family = current_user.families.first
   end
 
   # GET /families/1 or /families/1.json

@@ -1,23 +1,16 @@
+<div class="container">
 <h1>愛犬一覧</h1>
 <%= link_to '愛犬を登録', new_pet_path %>
 <hr />
-<div class = "col-md-3">
-  <table>
-    <thead>
-      <tr>
-        <th>愛犬</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <% @pets.each do |pet| %>
-            <% if pet.family.id == current_user.families.first.id %>
-              <td><%= link_to pet.name, pet %></td>
-            <% end %>
-          <% end %>
-        </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-3">
+    <h5>愛犬一覧</h5>
+    <hr />
+    <% @pets.each do |pet| %>
+      <% if pet.family.id == current_user.families.first.id %>
+        <li><%= link_to pet.name, pet %></li><br>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-<br>
+
